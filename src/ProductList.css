@@ -215,7 +215,7 @@ body {
     background-color: #45a049;
   }
   
-  .product-button.added-to-cart {
+  .product-button:disabled {
     background-color: grey; /* Grey when product is added */
   }
   @media (max-width: 1200px) {
