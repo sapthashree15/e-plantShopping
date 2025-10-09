@@ -10,60 +10,19 @@ const CartItem = ({ onContinueShopping, addedToCart, reactivateAddButton}) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {     
-    
-    const totalAmount=cart.reduce((total,item)=>total+item.quantity*parseInt(item.cost.replace("$","")),0);   
-    
-    return totalAmount;
-
+    let total = 0;
+    cart.forEach(item => {
+        total += parseInt(item.cost.replace("$","")); // quantity ignored
+    });   
+    return total;
+};
 
  
-  };
-  const handleCheckoutShopping = (e) => {
-    alert('Coming Soon!!');
-  };
-  const handleContinueShopping = (e) => {
-    onContinueShopping(e)
-   
-  };
 
-
-
-  const handleIncrement = (item) => {
-    const quantity=item.quantity+1;   
-    dispatch(updateQuantity({name:item.name,quantity:quantity}));
-    
-    
-    
-  };
-
-  const handleDecrement = (item) => {
-    if (item.quantity-1>0){
-        const quantity=item.quantity-1;
-        dispatch(updateQuantity({name:item.name,quantity:quantity}));
-    }else if (item.quantity-1==0){
-        dispatch(removeItem(item.name));
-        reactivateAddButton(item);
-    }
-
-   
-  };
-
-  const handleRemove = (item) => {
-    
-    dispatch(removeItem(item.name));
-    reactivateAddButton(item);
-    
-  };
-
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
-    const itemcost=parseInt(item.cost.replace("$",""))
-    return item.quantity*itemcost;
-  };
 
   return (
     <div className="cart-container">
-      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
