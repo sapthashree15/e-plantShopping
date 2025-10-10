@@ -23,7 +23,6 @@ const CartItem = ({ onContinueShopping }) => {
     if (item.quantity > 1) {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     } else {
-      // quantity would drop to 0 -> remove the item
       dispatch(removeItem(item.name));
     }
   };
@@ -35,38 +34,9 @@ const CartItem = ({ onContinueShopping }) => {
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Cart Details</h2>
-      <div>
-        {cart.map(item => (
-          <div className="cart-item" key={item.name}>
-            <img className="cart-item-image" src={item.image} alt={item.name} />
-            <div className="cart-item-details">
-              <div className="cart-item-name">{item.name}</div>
-              <div className="cart-item-cost">{item.cost}</div>
-              <div className="cart-item-quantity">
-                <button
-                  className="cart-item-button cart-item-button-dec"
-                  onClick={() => handleDecrement(item)}
-                >
-                  -
-                </button>
-                <span className="cart-item-quantity-value">{item.quantity}</span>
-                <button
-                  className="cart-item-button cart-item-button-inc"
-                  onClick={() => handleIncrement(item)}
-                >
-                  +
-                </button>
-              </div>
-              <button
-                className="cart-item-delete"
-                onClick={() => handleRemove(item)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+
+      {/* ❌ Removed map iteration — no image, name, or cost display */}
+      <p style={{ color: 'gray' }}>Cart items will be displayed here.</p>
 
       <div className="continue_shopping_btn" style={{ marginTop: '20px' }}>
         <button
