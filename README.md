@@ -1,2 +1,2 @@
 
-# This README file contains the project name 
+# This README file contains the project name e-plantshopping
